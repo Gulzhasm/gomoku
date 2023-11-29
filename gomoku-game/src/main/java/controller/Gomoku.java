@@ -3,7 +3,7 @@ package controller;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Game {
+public class Gomoku {
 
     private static final int SIZE = 15;
     private static final char HUMAN = 'W';
@@ -27,13 +27,9 @@ public class Game {
                     System.out.println("The player " + currentPlayer + " has won!");
                 }
             }
-
             currentPlayer = (currentPlayer == HUMAN) ? COMPUTER : HUMAN;
             displayBoard();
         }
-    }
-
-    static void computerMove() {
     }
 
     static void humanMove() {
@@ -48,12 +44,8 @@ public class Game {
             System.out.println("Invalid indexes entered!");
         }
         if (humanMoveCount >= 5) {
-            isGameOver = checkWin(HUMAN);
+            isGameOver = isWin(HUMAN);
         }
-    }
-
-    static boolean checkWin(char currentPlayer) {
-        return false;
     }
 
     static void initializeBoard() {
@@ -70,6 +62,36 @@ public class Game {
             System.out.println();
         }
         System.out.println("-------------------------------");
+    }
+
+    static void computerMove() {
+        int[] bestMove = bestMove();
+        if (bestMove[0] != -1) {
+            board[bestMove[0]][bestMove[1]] = COMPUTER;
+            isGameOver = isWin(COMPUTER);
+        }
+    }
+
+    //TODO add an elegant solution best or prioritizedMove
+    static int[] bestMove() {
+
+        // isVerticalWin
+        // isHorizontalWin
+        // isDiagonalDownWin
+        // isDiagonalUpWin
+
+        return new int[]{-1, -1};
+    }
+
+    //TODO add an elegant solution for checking isWin
+    static boolean isWin(char player) {
+        // isVerticalWin
+        // isHorizontalWin
+        // isDiagonalDownWin
+        // isDiagonalUpWin
+
+        //no winners
+        return false;
     }
 
 
